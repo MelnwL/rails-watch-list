@@ -5,3 +5,32 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# si besoin
+# quand j'exécute le fichier seed (rails db:seed),  ça commence par nettoyer la DB des précédents peuplements :
+# puts 'clearing Movies'
+# Movie.destroy_all
+
+puts 'Creating 6 movies'
+6.times do
+  movie = Movie.new(
+    title: Faker::Movie.title,
+    overview: Faker::Lorem.paragraphs,
+    poster_url: Faker::Internet.url,
+    rating: rand(0..5)
+  )
+  movie.save!
+end
+puts 'Finished!'
+
+puts 'clearing Lists'
+List.destroy_all
+
+puts 'Creating 5 lists'
+5.times do
+  list = List.new(
+    name: Faker::Name.name
+  )
+  list.save!
+end
+puts 'Finished!'
