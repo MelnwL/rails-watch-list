@@ -8,8 +8,8 @@
 
 # si besoin
 # quand j'exécute le fichier seed (rails db:seed),  ça commence par nettoyer la DB des précédents peuplements :
-# puts 'clearing Movies'
-# Movie.destroy_all
+puts 'clearing Movies'
+Movie.destroy_all
 
 puts 'Creating 6 movies'
 6.times do
@@ -32,5 +32,17 @@ puts 'Creating 5 lists'
     name: Faker::Name.name
   )
   list.save!
+end
+puts 'Finished!'
+
+puts 'clearing bookmarks'
+Bookmark.destroy_all
+
+puts 'Creating bookmarks'
+bookmark1 = { content: 'blablabla', list_id: 1, movie_id: 1 }
+bookmark2 = { content: 'ffffffff', list_id: 2, movie_id: 3 }
+[bookmark1, bookmark2].each do |attributes|
+  bookmark = Bookmark.create!(attributes)
+  puts "Created #{bookmark.name}"
 end
 puts 'Finished!'
